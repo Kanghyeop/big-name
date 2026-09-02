@@ -34,7 +34,9 @@ export default function AdminLogin() {
   return (
     <div className="ad-login">
       <form className="ad-login-box" onSubmit={handleSubmit}>
-        <div className="kicker">BIGNAME</div>
+        <div className="ad-login-brand">
+          <span className="brand lg">BIG NAME</span>
+        </div>
         <h1>어드민 콘솔</h1>
         <div className="desc">
           운영자 비밀번호를 입력하세요. 신청자의 연락처가 들어 있는 화면입니다.

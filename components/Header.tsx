@@ -4,8 +4,8 @@ export default function Header() {
   return (
     <header className="site-header">
       <div className="wrap nav">
-        <Link href="/" className="logo">
-          빅네임
+        <Link href="/" aria-label="빅네임 홈">
+          <span className="brand">BIG NAME</span>
         </Link>
         <nav className="nav-links">
           <Link href="/#products">강의·전자책</Link>

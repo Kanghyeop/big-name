@@ -1,14 +1,42 @@
+/*
+  팔레트는 로고에서 가져왔다. 로고의 진한 초록이 포인트 컬러이고, 로고 글자의
+  크림색이 섹션 배경 톤이 된다. 흰색·회색 기조에 초록만 얹던 것보다 로고와
+  같은 화면에 놓았을 때 겉돌지 않는다.
+*/
 :root {
-  --ink: #232323;
-  --accent: #0f7a4d;
-  --accent-dark: #0b5c3a;
-  --accent-soft: #eef7f2;
-  --sub: #6f6f6f;
-  --line: #e6e6e6;
+  --ink: #22261f;
+  --accent: #175c43;
+  --accent-dark: #10412f;
+  --accent-soft: #e8efe9;
+  --cream: #f4f1e7;
+  --sub: #6b6f68;
+  --line: #e4e2da;
   --bg: #ffffff;
-  --bg-alt: #fafafa;
-  --danger: #c0392b;
+  --bg-alt: #f7f5ee;
+  --danger: #b03a2e;
   --max: 1080px;
+}
+
+/* 로고 배지. 로고와 같은 문법(둥근 사각 + 안쪽 크림 라인)을 텍스트로 재현한다.
+   public/logo.png 가 준비되면 이미지로 바꾼다. */
+.brand {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 7px 13px;
+  border-radius: 11px;
+  background: var(--accent);
+  color: var(--cream);
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  box-shadow: inset 0 0 0 2px var(--accent), inset 0 0 0 3.5px var(--cream);
+}
+.brand.lg {
+  padding: 9px 16px;
+  border-radius: 13px;
+  font-size: 16px;
 }
 
 * {

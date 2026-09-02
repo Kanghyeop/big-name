@@ -5,10 +5,10 @@
    ================================================================ */
 
 .ad {
-  --ad-soft: #f6f7f8;
-  --ad-line: #e6e8ea;
-  --ad-line-soft: #f0f1f3;
-  --ad-faint: #9aa0a6;
+  --ad-soft: #f7f6f1;
+  --ad-line: #e5e3db;
+  --ad-line-soft: #efeee8;
+  --ad-faint: #9a9a92;
   min-height: 100dvh;
   background: var(--ad-soft);
 }
@@ -262,7 +262,7 @@
   border-bottom: 0;
 }
 .ad-table tbody tr:hover {
-  background: #fafbfc;
+  background: #fbfaf6;
 }
 .ad-table .nowrap {
   white-space: nowrap;
@@ -456,20 +456,20 @@
   align-items: center;
   justify-content: center;
   padding: 24px;
-  background: #f6f7f8;
+  background: #f7f6f1;
 }
 .ad-login-box {
   width: 100%;
   max-width: 380px;
   background: #fff;
-  border: 1px solid #e6e8ea;
+  border: 1px solid #e5e3db;
   border-radius: 16px;
   padding: 36px 32px;
 }
 .ad-login-box .kicker {
   font-size: 12px;
   font-weight: 700;
-  color: #9aa0a6;
+  color: #9a9a92;
   letter-spacing: 0.04em;
 }
 .ad-login-box h1 {
@@ -487,7 +487,7 @@
 .ad-login-box input[type="password"] {
   width: 100%;
   padding: 13px 14px;
-  border: 1px solid #e6e8ea;
+  border: 1px solid #e5e3db;
   border-radius: 10px;
   font-family: inherit;
   font-size: 16px;
@@ -523,4 +523,14 @@
   .ad-detail {
     grid-template-columns: 2fr 1fr;
   }
+}
+
+/* 사이드바·로그인의 로고 배지 */
+.ad-brand .name {
+  margin-top: 8px;
+}
+.ad-login-brand {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 18px;
 }

@@ -5,7 +5,7 @@ export default function Footer() {
     <footer className="site-footer">
       <div className="wrap">
         <div className="foot-top">
-          <div className="logo">빅네임</div>
+          <span className="brand">BIG NAME</span>
           <nav className="foot-links">
             <Link href="/#products">강의·전자책</Link>
             <Link href="/#corporate">기업 교육</Link>

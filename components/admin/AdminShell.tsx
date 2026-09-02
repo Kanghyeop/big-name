@@ -45,8 +45,8 @@ export default function AdminShell({
   const nav = (
     <>
       <div className="ad-side-head">
-        <div>
-          <div className="kicker">BIGNAME</div>
+        <div className="ad-brand">
+          <span className="brand">BIG NAME</span>
           <div className="name">어드민 콘솔</div>
         </div>
         <button
