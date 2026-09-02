@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# OMC 상태 (계획·스펙·핸드오프만 추적)
+.omc/*
+!.omc/plans/
+!.omc/specs/
+!.omc/handoffs/
