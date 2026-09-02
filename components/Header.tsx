@@ -6,7 +6,7 @@ export default function Header() {
     <header className="site-header">
       <div className="wrap nav">
         <Link href="/" aria-label="빅네임 홈">
-          <Logo size={42} />
+          <Logo size={52} />
         </Link>
         <nav className="nav-links">
           <Link href="/#products">강의·전자책</Link>
