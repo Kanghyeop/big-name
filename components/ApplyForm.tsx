@@ -71,6 +71,7 @@ export default function ApplyForm() {
   });
   const [errors, setErrors] = useState<Errors>({});
   const [submitting, setSubmitting] = useState(false);
+  const [sendError, setSendError] = useState("");
   const [done, setDone] = useState(false);
 
   function update<K extends keyof FormState>(key: K, value: FormState[K]) {
@@ -90,16 +91,24 @@ export default function ApplyForm() {
     }
 
     setSubmitting(true);
+    setSendError("");
 
-    // ===== 백엔드 연결 지점 =====
-    // 지금은 껍데기 단계라 실제 전송을 하지 않고 콘솔에만 찍습니다.
-    // 나중에 이 블록만 fetch("/api/apply", { method: "POST", ... }) 로 바꾸면
-    // Supabase 저장 + 이메일 알림이 붙습니다. 나머지 화면은 그대로 둡니다.
-    console.log("[신청 데이터]", values);
-    await new Promise((r) => setTimeout(r, 600));
-    // ===========================
+    const res = await fetch("/api/apply", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(values),
+    }).catch(() => null);
 
     setSubmitting(false);
+
+    if (!res || !res.ok) {
+      const data = res ? await res.json().catch(() => ({})) : {};
+      setSendError(
+        data.error ?? "보내지 못했습니다. 잠시 뒤 다시 시도해주세요."
+      );
+      return;
+    }
+
     setDone(true);
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
@@ -117,10 +126,6 @@ export default function ApplyForm() {
         <Link href="/" className="btn btn-line">
           홈으로 돌아가기
         </Link>
-        <div className="notice">
-          지금은 화면만 만든 상태입니다. 실제로 접수되지 않고 브라우저 콘솔에만
-          기록됩니다. 백엔드를 붙이면 이 안내는 지워집니다.
-        </div>
       </div>
     );
   }
@@ -137,7 +142,7 @@ export default function ApplyForm() {
           value={values.name}
           onChange={(e) => update("name", e.target.value)}
           className={errors.name ? "invalid" : ""}
-          placeholder="김다현"
+          placeholder="공다현"
         />
         {errors.name && <div className="error">{errors.name}</div>}
       </div>
@@ -252,14 +257,11 @@ export default function ApplyForm() {
       </label>
       {errors.agree && <div className="error">{errors.agree}</div>}
 
+      {sendError && <div className="error">{sendError}</div>}
+
       <button type="submit" className="btn btn-fill submit" disabled={submitting}>
         {submitting ? "보내는 중..." : "신청 보내기"}
       </button>
-
-      <div className="notice">
-        아직 화면만 만든 단계입니다. 지금 제출해도 실제로 전송되지 않고 브라우저
-        콘솔에만 남습니다.
-      </div>
     </form>
   );
 }

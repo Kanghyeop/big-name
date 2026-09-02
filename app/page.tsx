@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import ContactActions from "@/components/ContactActions";
 
 export default function Home() {
   return (
@@ -232,6 +233,18 @@ export default function Home() {
               무료로 받기 →
             </a>
           </div>
+        </div>
+      </section>
+
+      {/* 문의 */}
+      <section id="contact">
+        <div className="wrap center">
+          <div className="eyebrow">CONTACT</div>
+          <h2>어떤 이야기든 편하게</h2>
+          <p className="lead">
+            신청서를 쓰기 전에 물어보고 싶은 것이 있다면 바로 연락 주세요.
+          </p>
+          <ContactActions />
         </div>
       </section>
 
