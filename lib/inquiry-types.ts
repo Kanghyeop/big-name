@@ -27,3 +27,39 @@ export type Inquiry = {
 };
 
 export type NewInquiry = Omit<Inquiry, "id" | "createdAt" | "status">;
+
+/**
+ * 문의 유형과 어드민 화면의 분류.
+ *
+ * 폼으로 들어온 컨설팅·기업교육은 실제 "신청"이고, 강의 문의나 그 외는
+ * 단순 "인바운드"로 봅니다. 나중에 유형이 늘면 여기만 고치면 됩니다.
+ */
+export const TYPE_LABEL: Record<string, string> = {
+  consulting: "1:1 컨설팅",
+  corporate: "기업 교육",
+  course: "강의·전자책",
+  etc: "그 외",
+};
+
+export const BUDGET_LABEL: Record<string, string> = {
+  "under-300": "300만원 미만",
+  "300-1000": "300만원 - 1,000만원",
+  "over-1000": "1,000만원 이상",
+  undecided: "미정",
+};
+
+export type Category = "applications" | "inbound";
+
+const APPLICATION_TYPES = ["consulting", "corporate"];
+
+export function categoryOf(type: string): Category {
+  return APPLICATION_TYPES.includes(type) ? "applications" : "inbound";
+}
+
+export function formatDate(iso: string) {
+  const d = new Date(iso);
+  const pad = (n: number) => String(n).padStart(2, "0");
+  return `${d.getFullYear()}.${pad(d.getMonth() + 1)}.${pad(d.getDate())} ${pad(
+    d.getHours()
+  )}:${pad(d.getMinutes())}`;
+}

@@ -27,14 +27,18 @@ export default function AdminLogin() {
       setError(data.error ?? "로그인에 실패했습니다.");
       return;
     }
+    router.replace("/admin");
     router.refresh();
   }
 
   return (
-    <div className="login-wrap">
-      <form className="login-box" onSubmit={handleSubmit}>
-        <h1>빅네임 어드민</h1>
-        <p>신청 내역을 보려면 비밀번호를 입력하세요.</p>
+    <div className="ad-login">
+      <form className="ad-login-box" onSubmit={handleSubmit}>
+        <div className="kicker">BIGNAME</div>
+        <h1>어드민 콘솔</h1>
+        <div className="desc">
+          운영자 비밀번호를 입력하세요. 신청자의 연락처가 들어 있는 화면입니다.
+        </div>
         <input
           type="password"
           value={password}

@@ -1,6 +1,7 @@
 import { promises as fs } from "fs";
 import path from "path";
-import type { Inquiry, NewInquiry, Status } from "./inquiry-types";
+import type { Inquiry, NewInquiry, Status, Category } from "./inquiry-types";
+import { categoryOf } from "./inquiry-types";
 
 /**
  * 신청 데이터 저장소.
@@ -60,4 +61,15 @@ export async function updateStatus(
   found.status = status;
   await writeAll(list);
   return found;
+}
+
+/** 어드민 화면 분류(신청·인바운드)로 걸러 가져옵니다. */
+export async function listByCategory(cat: Category): Promise<Inquiry[]> {
+  const all = await listInquiries();
+  return all.filter((i) => categoryOf(i.type) === cat);
+}
+
+export async function getInquiry(id: string): Promise<Inquiry | null> {
+  const all = await listInquiries();
+  return all.find((i) => i.id === id) ?? null;
 }
