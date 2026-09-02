@@ -29,10 +29,11 @@ export type Inquiry = {
 export type NewInquiry = Omit<Inquiry, "id" | "createdAt" | "status">;
 
 /**
- * 문의 유형과 어드민 화면의 분류.
+ * 문의 유형.
  *
- * 폼으로 들어온 컨설팅·기업교육은 실제 "신청"이고, 강의 문의나 그 외는
- * 단순 "인바운드"로 봅니다. 나중에 유형이 늘면 여기만 고치면 됩니다.
+ * 어드민은 이 유형들을 인바운드 한 화면에서 다 봅니다. 유형은 리스트의
+ * 유형 열로만 구분됩니다. 나중에 유형을 바꾸면 이미 쌓인 데이터의 type 값도
+ * 같이 정리해야 합니다.
  */
 export const TYPE_LABEL: Record<string, string> = {
   consulting: "1:1 컨설팅",
@@ -47,14 +48,6 @@ export const BUDGET_LABEL: Record<string, string> = {
   "over-1000": "1,000만원 이상",
   undecided: "미정",
 };
-
-export type Category = "applications" | "inbound";
-
-const APPLICATION_TYPES = ["consulting", "corporate"];
-
-export function categoryOf(type: string): Category {
-  return APPLICATION_TYPES.includes(type) ? "applications" : "inbound";
-}
 
 export function formatDate(iso: string) {
   const d = new Date(iso);

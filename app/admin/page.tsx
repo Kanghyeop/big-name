@@ -1,11 +1,6 @@
 import Link from "next/link";
 import { listInquiries } from "@/lib/inquiries";
-import {
-  STATUS_LABEL,
-  TYPE_LABEL,
-  categoryOf,
-  formatDate,
-} from "@/lib/inquiry-types";
+import { STATUS_LABEL, TYPE_LABEL, formatDate } from "@/lib/inquiry-types";
 
 export default async function AdminDashboard() {
   const all = await listInquiries();
@@ -84,7 +79,7 @@ export default async function AdminDashboard() {
                     </td>
                     <td className="nowrap">
                       <Link
-                        href={`/admin/${categoryOf(it.type)}/${it.id}`}
+                        href={`/admin/inbound/${it.id}`}
                         className="strong"
                       >
                         {it.name}

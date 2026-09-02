@@ -12,6 +12,10 @@ export default async function InboundDetailPage({
   if (!item) notFound();
 
   return (
-    <InquiryDetail item={item} backHref="/admin/inbound" backLabel="인바운드" />
+    <InquiryDetail
+      item={item}
+      backHref="/admin/inbound"
+      backLabel="인바운드"
+    />
   );
 }

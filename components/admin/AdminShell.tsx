@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { IconDoc, IconGrid, IconInbox, IconMenu, IconX } from "./icons";
+import { IconGrid, IconInbox, IconMenu, IconX } from "./icons";
 
 /**
  * 어드민 껍데기.
@@ -12,22 +12,16 @@ import { IconDoc, IconGrid, IconInbox, IconMenu, IconX } from "./icons";
  * 여기에 한 줄 추가하고 app/admin/<경로>/page.tsx 를 만들면 됩니다.
  */
 const MENU = [
-  { href: "/admin", label: "대시보드", Icon: IconGrid, key: null },
-  {
-    href: "/admin/applications",
-    label: "신청 관리",
-    Icon: IconDoc,
-    key: "applications" as const,
-  },
+  { href: "/admin", label: "대시보드", Icon: IconGrid, badge: false },
   {
     href: "/admin/inbound",
     label: "인바운드",
     Icon: IconInbox,
-    key: "inbound" as const,
+    badge: true,
   },
 ];
 
-export type NavCounts = { applications: number; inbound: number };
+export type NavCounts = { pending: number };
 
 export default function AdminShell({
   counts,
@@ -66,10 +60,10 @@ export default function AdminShell({
       </div>
 
       <nav className="ad-nav">
-        {MENU.map(({ href, label, Icon, key }) => {
+        {MENU.map(({ href, label, Icon, badge }) => {
           const active =
             href === "/admin" ? pathname === "/admin" : pathname.startsWith(href);
-          const n = key ? counts[key] : 0;
+          const n = badge ? counts.pending : 0;
           return (
             <Link key={href} href={href} className={active ? "on" : ""}>
               <Icon />

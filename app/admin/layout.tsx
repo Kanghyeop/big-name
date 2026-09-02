@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import "./admin.css";
 import { isAdmin } from "@/lib/auth";
 import { listInquiries } from "@/lib/inquiries";
-import { categoryOf } from "@/lib/inquiry-types";
 import AdminShell from "@/components/admin/AdminShell";
 
 export const metadata: Metadata = {
@@ -25,12 +24,7 @@ export default async function AdminLayout({
 
   // 사이드바에 표시할 미처리 건수
   const all = await listInquiries();
-  const pending = all.filter((i) => i.status === "new");
-  const counts = {
-    applications: pending.filter((i) => categoryOf(i.type) === "applications")
-      .length,
-    inbound: pending.filter((i) => categoryOf(i.type) === "inbound").length,
-  };
+  const counts = { pending: all.filter((i) => i.status === "new").length };
 
   return <AdminShell counts={counts}>{children}</AdminShell>;
 }

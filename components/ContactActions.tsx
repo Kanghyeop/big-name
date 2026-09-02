@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 
 // TODO: 실제 문의 이메일로 교체하세요.
@@ -25,8 +26,12 @@ export default function ContactActions() {
   return (
     <>
       <div className="btns">
-        <button type="button" className="btn btn-fill" onClick={copyEmail}>
-          {EMAIL} 복사
+        <Link href="/apply" className="btn btn-fill">
+          컨설팅 신청하기
+        </Link>
+        {/* 이메일은 메일 앱을 띄우지 않고 주소를 복사합니다. */}
+        <button type="button" className="btn btn-line" onClick={copyEmail}>
+          {EMAIL}
         </button>
         {KAKAO && (
           <a
@@ -35,7 +40,7 @@ export default function ContactActions() {
             rel="noopener noreferrer"
             className="btn btn-line"
           >
-            카카오톡 채널로 문의
+            카카오톡 채널
           </a>
         )}
       </div>
