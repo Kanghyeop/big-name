@@ -8,7 +8,14 @@ export async function POST(req: Request) {
     password?: string;
   };
 
-  if (!password || password !== getAdminPassword()) {
+  const expected = getAdminPassword();
+  if (!expected) {
+    return NextResponse.json(
+      { error: "ADMIN_PASSWORD 환경변수가 설정되지 않았습니다." },
+      { status: 500 }
+    );
+  }
+  if (!password || password !== expected) {
     return NextResponse.json(
       { error: "비밀번호가 맞지 않습니다." },
       { status: 401 }
@@ -16,7 +23,7 @@ export async function POST(req: Request) {
   }
 
   const res = NextResponse.json({ ok: true });
-  res.cookies.set(ADMIN_COOKIE, getAdminPassword(), {
+  res.cookies.set(ADMIN_COOKIE, expected, {
     httpOnly: true,
     sameSite: "lax",
     secure: process.env.NODE_ENV === "production",

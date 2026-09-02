@@ -15,8 +15,11 @@ export default function proxy(req: NextRequest) {
 
   if (pathname === "/admin/login") return NextResponse.next();
 
-  const expected = process.env.ADMIN_PASSWORD ?? "bigname";
-  if (req.cookies.get(COOKIE)?.value === expected) return NextResponse.next();
+  // ADMIN_PASSWORD 가 없으면 아무도 통과시키지 않습니다.
+  const expected = process.env.ADMIN_PASSWORD;
+  if (expected && req.cookies.get(COOKIE)?.value === expected) {
+    return NextResponse.next();
+  }
 
   const url = req.nextUrl.clone();
   url.pathname = "/admin/login";

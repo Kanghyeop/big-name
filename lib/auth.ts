@@ -10,11 +10,18 @@ import { cookies } from "next/headers";
 
 export const ADMIN_COOKIE = "bn_admin";
 
+/**
+ * 소스에 기본 비밀번호를 두지 않습니다. 저장소가 공개되면 그 값이 그대로
+ * 드러나고, 환경변수를 깜빡한 배포가 곧바로 열린 어드민이 됩니다.
+ * 값이 없으면 아무도 못 들어가는 쪽이 안전합니다.
+ */
 export function getAdminPassword() {
-  return process.env.ADMIN_PASSWORD ?? "bigname";
+  return process.env.ADMIN_PASSWORD ?? "";
 }
 
 export async function isAdmin() {
+  const expected = getAdminPassword();
+  if (!expected) return false;
   const store = await cookies();
-  return store.get(ADMIN_COOKIE)?.value === getAdminPassword();
+  return store.get(ADMIN_COOKIE)?.value === expected;
 }
