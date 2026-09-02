@@ -17,7 +17,6 @@ export const metadata: Metadata = {
     description,
     type: "website",
     locale: "ko_KR",
-    // TODO: public/og.png 로 실제 OG 이미지 넣기 (1200x630 권장)
     images: ["/og.png"],
   },
   twitter: {

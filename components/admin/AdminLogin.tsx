@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Logo from "../Logo";
 
 export default function AdminLogin() {
   const router = useRouter();
@@ -35,7 +36,7 @@ export default function AdminLogin() {
     <div className="ad-login">
       <form className="ad-login-box" onSubmit={handleSubmit}>
         <div className="ad-login-brand">
-          <span className="brand lg">BIG NAME</span>
+          <Logo size={64} />
         </div>
         <h1>어드민 콘솔</h1>
         <div className="desc">

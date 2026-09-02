@@ -1,11 +1,12 @@
 import Link from "next/link";
+import Logo from "./Logo";
 
 export default function Header() {
   return (
     <header className="site-header">
       <div className="wrap nav">
         <Link href="/" aria-label="빅네임 홈">
-          <span className="brand">BIG NAME</span>
+          <Logo size={42} />
         </Link>
         <nav className="nav-links">
           <Link href="/#products">강의·전자책</Link>

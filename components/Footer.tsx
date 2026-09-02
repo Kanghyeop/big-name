@@ -1,11 +1,12 @@
 import Link from "next/link";
+import Logo from "./Logo";
 
 export default function Footer() {
   return (
     <footer className="site-footer">
       <div className="wrap">
         <div className="foot-top">
-          <span className="brand">BIG NAME</span>
+          <Logo size={52} />
           <nav className="foot-links">
             <Link href="/#products">강의·전자책</Link>
             <Link href="/#corporate">기업 교육</Link>

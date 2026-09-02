@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { IconGrid, IconInbox, IconMenu, IconX } from "./icons";
+import Logo from "../Logo";
 
 /**
  * 어드민 껍데기.
@@ -46,7 +47,7 @@ export default function AdminShell({
     <>
       <div className="ad-side-head">
         <div className="ad-brand">
-          <span className="brand">BIG NAME</span>
+          <Logo size={36} />
           <div className="name">어드민 콘솔</div>
         </div>
         <button
